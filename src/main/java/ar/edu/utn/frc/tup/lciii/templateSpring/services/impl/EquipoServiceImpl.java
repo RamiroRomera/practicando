@@ -1,6 +1,7 @@
 package ar.edu.utn.frc.tup.lciii.templateSpring.services.impl;
 
 
+import ar.edu.utn.frc.tup.lciii.templateSpring.entities.EquipoEntity;
 import ar.edu.utn.frc.tup.lciii.templateSpring.models.EquipoModel;
 import ar.edu.utn.frc.tup.lciii.templateSpring.repositories.EquiposRepository;
 import ar.edu.utn.frc.tup.lciii.templateSpring.services.EquipoService;
@@ -34,5 +35,10 @@ public class EquipoServiceImpl implements EquipoService {
     @Override
     public EquipoModel getEquipo(Long id) {
         return null;
+    }
+
+    @Override
+    public EquipoModel actualizarEquipo(EquipoModel equipo) {
+        return modelMapper.map(equiposRepository.save(modelMapper.map(equipo, EquipoEntity.class)), EquipoModel.class);
     }
 }

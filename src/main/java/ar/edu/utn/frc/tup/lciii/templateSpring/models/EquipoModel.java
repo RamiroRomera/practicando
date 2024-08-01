@@ -11,4 +11,5 @@ public class EquipoModel {
     private Long id;
     private String nombre;
     private Boolean participando;
+    private Integer puntos;
 }

@@ -4,6 +4,7 @@ package ar.edu.utn.frc.tup.lciii.templateSpring.services.impl;
 import ar.edu.utn.frc.tup.lciii.templateSpring.dtos.eventos.EventoDto;
 import ar.edu.utn.frc.tup.lciii.templateSpring.entities.DummyEntity;
 import ar.edu.utn.frc.tup.lciii.templateSpring.entities.EventoEntity;
+import ar.edu.utn.frc.tup.lciii.templateSpring.entities.PartidoEntity;
 import ar.edu.utn.frc.tup.lciii.templateSpring.models.DummyModel;
 import ar.edu.utn.frc.tup.lciii.templateSpring.models.EventoModel;
 import ar.edu.utn.frc.tup.lciii.templateSpring.models.PartidoModel;
@@ -57,6 +58,15 @@ public class EventoServiceImpl implements EventoService {
     @Override
     public PartidoModel crearEntra(Long idPartido, EventoDto eventoDto) {
         return modificarPartido(idPartido, eventoDto, Evento.ENTRA);
+    }
+
+    @Override
+    public List<EventoModel> getEventosByPartido(PartidoModel partido) {
+        List<EventoModel> listEventos = new ArrayList<>();
+        eventosRepository.findAllByPartido(modelMapper.map(partido, PartidoEntity.class)).forEach(eventoEntity ->
+                listEventos.add(modelMapper.map(eventoEntity, EventoModel.class))
+        );
+        return listEventos;
     }
 
     private PartidoModel modificarPartido(Long idPartido, EventoDto eventoDto, Evento eventoEnum) {

@@ -9,4 +9,5 @@ import java.util.List;
 public interface EquipoService {
     List<EquipoModel> getAllEquipos();
     EquipoModel getEquipo(Long id);
+    EquipoModel actualizarEquipo(EquipoModel equipo);
 }
