@@ -20,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -97,5 +98,42 @@ public class GrupoServiceImpl implements GrupoService {
         }
 
         return listPartidos;
+    }
+
+    @Override
+    public Boolean cerrarGrupos() {
+        List<GrupoModel> listGrupos = new ArrayList<>();
+        gruposRepository.findAll().forEach(grupoEntity -> listGrupos.add(modelMapper.map(grupoEntity, GrupoModel.class)));
+        int llavesPrimeraLlave = 0;
+        int llavesSegundaLlave = 0;
+        for (GrupoModel grupo : listGrupos) {
+            List<PartidoModel> listPartidos = partidoService.getAllPartidoByGroup(grupo);
+
+            for (PartidoModel partidoModel : listPartidos) {
+                if (partidoModel.getTerminado() == false) {
+                    throw new HttpClientErrorException(HttpStatusCode.valueOf(404), "No se han terminado todos los partidos");
+                }
+            }
+
+            List<EquipoModel> listEquipos = new ArrayList<>();
+            listEquipos.add(grupo.getEquipos1());
+            listEquipos.add(grupo.getEquipos2());
+            listEquipos.add(grupo.getEquipos3());
+            listEquipos.add(grupo.getEquipos4());
+            listEquipos.add(grupo.getEquipos5());
+
+            listEquipos.sort(Comparator.comparing(EquipoModel::getPuntos));
+
+            if (llavesPrimeraLlave == llavesSegundaLlave) {
+                partidoService.crearPartido(listEquipos.get(0), ++llavesPrimeraLlave, Etapa.CUARTOS);
+
+                partidoService.crearPartido(listEquipos.get(1), ++llavesPrimeraLlave, Etapa.CUARTOS);
+            } else if (llavesPrimeraLlave > llavesSegundaLlave) {
+                partidoService.crearPartido(listEquipos.get(1), ++llavesSegundaLlave, Etapa.CUARTOS);
+
+                partidoService.crearPartido(listEquipos.get(0), ++llavesSegundaLlave, Etapa.CUARTOS);
+            }
+        }
+        return true;
     }
 }

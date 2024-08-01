@@ -17,4 +17,5 @@ public class PartidoModel {
     private Integer amonestados;
     private Etapa etapa;
     private Boolean terminado;
+    private Integer llave;
 }

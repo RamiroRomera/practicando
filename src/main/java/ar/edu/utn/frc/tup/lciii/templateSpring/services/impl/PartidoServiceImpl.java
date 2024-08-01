@@ -3,8 +3,10 @@ package ar.edu.utn.frc.tup.lciii.templateSpring.services.impl;
 
 import ar.edu.utn.frc.tup.lciii.templateSpring.dtos.eventos.EventoDto;
 import ar.edu.utn.frc.tup.lciii.templateSpring.dtos.partido.InfoPartidoDto;
+import ar.edu.utn.frc.tup.lciii.templateSpring.entities.EquipoEntity;
 import ar.edu.utn.frc.tup.lciii.templateSpring.entities.PartidoEntity;
 import ar.edu.utn.frc.tup.lciii.templateSpring.models.EquipoModel;
+import ar.edu.utn.frc.tup.lciii.templateSpring.models.GrupoModel;
 import ar.edu.utn.frc.tup.lciii.templateSpring.models.PartidoModel;
 import ar.edu.utn.frc.tup.lciii.templateSpring.models.utils.Etapa;
 import ar.edu.utn.frc.tup.lciii.templateSpring.repositories.PartidosRepository;
@@ -15,8 +17,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class PartidoServiceImpl implements PartidoService {
@@ -89,5 +91,71 @@ public class PartidoServiceImpl implements PartidoService {
         infoPartido.setListEventos(listEventosDto);
 
         return infoPartido;
+    }
+
+    @Override
+    public List<PartidoModel> getAllPartidoByGroup(GrupoModel grupo) {
+        List<PartidoModel> listPartidos1 = new ArrayList<>();
+
+        partidoRepository.findAllByEquipoLocal(modelMapper.map(grupo.getEquipos1(), EquipoEntity.class)).forEach(partido ->
+            listPartidos1.add(modelMapper.map(partido, PartidoModel.class))
+        );
+
+        List<PartidoModel> listPartidos2 = new ArrayList<>();
+
+        partidoRepository.findAllByEquipoLocal(modelMapper.map(grupo.getEquipos2(), EquipoEntity.class)).forEach(partido ->
+                listPartidos2.add(modelMapper.map(partido, PartidoModel.class))
+        );
+
+        List<PartidoModel> listPartidos3 = new ArrayList<>();
+
+        partidoRepository.findAllByEquipoLocal(modelMapper.map(grupo.getEquipos3(), EquipoEntity.class)).forEach(partido ->
+                listPartidos3.add(modelMapper.map(partido, PartidoModel.class))
+        );
+
+        List<PartidoModel> listPartidos4 = new ArrayList<>();
+
+        partidoRepository.findAllByEquipoLocal(modelMapper.map(grupo.getEquipos4(), EquipoEntity.class)).forEach(partido ->
+                listPartidos4.add(modelMapper.map(partido, PartidoModel.class))
+        );
+
+        List<PartidoModel> listPartidos5 = new ArrayList<>();
+
+        partidoRepository.findAllByEquipoLocal(modelMapper.map(grupo.getEquipos5(), EquipoEntity.class)).forEach(partido ->
+                listPartidos5.add(modelMapper.map(partido, PartidoModel.class))
+        );
+
+
+        return getUniquePartidos(listPartidos1, listPartidos2, listPartidos3, listPartidos4, listPartidos5);
+    }
+
+    private List<PartidoModel> getUniquePartidos(List<PartidoModel>... lists) {
+        Set<PartidoModel> uniquePartidos = new HashSet<>();
+
+        for (List<PartidoModel> list : lists) {
+            uniquePartidos.addAll(list);
+        }
+
+        return uniquePartidos.stream().collect(Collectors.toList());
+    }
+
+    @Override
+    public PartidoModel crearPartido(EquipoModel equipo, Integer llave, Etapa etapa) {
+        Optional<PartidoEntity> partidoEntityOptional = (partidoRepository.findByLlaveAndEtapa(llave, etapa));
+        PartidoModel partido;
+        if (partidoEntityOptional.isEmpty()) {
+            partido = new PartidoModel();
+            partido.setEquipoLocal(equipo);
+            partido.setGolesLocales(0);
+            partido.setGolesVisitante(0);
+            partido.setTerminado(false);
+            partido.setEtapa(etapa);
+            partido.setAmonestados(0);
+            partido.setLlave(llave);
+        } else {
+            partido = modelMapper.map(partidoEntityOptional.get(), PartidoModel.class);
+            partido.setEquipoVisitante(equipo);
+        }
+        return this.actualizarPartido(partido);
     }
 }

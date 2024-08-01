@@ -29,4 +29,8 @@ public class GrupoController {
         return ResponseEntity.ok(gruposService.crearPartidos());
     }
 
+    @PostMapping("/cerrar")
+    public ResponseEntity<Boolean> cerrarGrupo() {
+        return ResponseEntity.ok(gruposService.cerrarGrupos());
+    }
 }

@@ -12,4 +12,6 @@ public interface GrupoService {
     List<GrupoModel> crearGrupos();
 
     List<PartidoModel> crearPartidos();
+
+    Boolean cerrarGrupos();
 }
