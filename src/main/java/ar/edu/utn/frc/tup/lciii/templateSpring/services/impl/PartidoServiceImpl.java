@@ -1,6 +1,7 @@
 package ar.edu.utn.frc.tup.lciii.templateSpring.services.impl;
 
 
+import ar.edu.utn.frc.tup.lciii.templateSpring.dtos.eventos.EventoDto;
 import ar.edu.utn.frc.tup.lciii.templateSpring.dtos.partido.InfoPartidoDto;
 import ar.edu.utn.frc.tup.lciii.templateSpring.entities.PartidoEntity;
 import ar.edu.utn.frc.tup.lciii.templateSpring.models.EquipoModel;
@@ -13,6 +14,9 @@ import ar.edu.utn.frc.tup.lciii.templateSpring.services.PartidoService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class PartidoServiceImpl implements PartidoService {
@@ -72,7 +76,7 @@ public class PartidoServiceImpl implements PartidoService {
 
         InfoPartidoDto infoPartido = modelMapper.map(partido, InfoPartidoDto.class);
         infoPartido.setEquipoLocal(partido.getEquipoLocal().getNombre());
-        infoPartido.setEquipoLocal(partido.getEquipoVisitante().getNombre());
+        infoPartido.setEquipoVisitante(partido.getEquipoVisitante().getNombre());
 
         if (partido.getTerminado()) {
             infoPartido.setTerminado("Terminado");
@@ -80,7 +84,9 @@ public class PartidoServiceImpl implements PartidoService {
             infoPartido.setTerminado("No Terminado");
         }
 
-        infoPartido.setListEventos(eventoService.getEventosByPartido(partido));
+        List<EventoDto> listEventosDto = new ArrayList<>();
+        eventoService.getEventosByPartido(partido).forEach(eventoModel -> listEventosDto.add(modelMapper.map(eventoModel, EventoDto.class)));
+        infoPartido.setListEventos(listEventosDto);
 
         return infoPartido;
     }

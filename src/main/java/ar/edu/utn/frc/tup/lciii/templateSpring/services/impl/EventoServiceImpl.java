@@ -1,21 +1,15 @@
 package ar.edu.utn.frc.tup.lciii.templateSpring.services.impl;
 
 
-import ar.edu.utn.frc.tup.lciii.templateSpring.dtos.eventos.EventoDto;
-import ar.edu.utn.frc.tup.lciii.templateSpring.entities.DummyEntity;
+import ar.edu.utn.frc.tup.lciii.templateSpring.dtos.eventos.EventoPostDto;
 import ar.edu.utn.frc.tup.lciii.templateSpring.entities.EventoEntity;
 import ar.edu.utn.frc.tup.lciii.templateSpring.entities.PartidoEntity;
-import ar.edu.utn.frc.tup.lciii.templateSpring.models.DummyModel;
 import ar.edu.utn.frc.tup.lciii.templateSpring.models.EventoModel;
 import ar.edu.utn.frc.tup.lciii.templateSpring.models.PartidoModel;
-import ar.edu.utn.frc.tup.lciii.templateSpring.models.utils.Etapa;
 import ar.edu.utn.frc.tup.lciii.templateSpring.models.utils.Evento;
-import ar.edu.utn.frc.tup.lciii.templateSpring.repositories.DummyRepository;
 import ar.edu.utn.frc.tup.lciii.templateSpring.repositories.EventosRepository;
-import ar.edu.utn.frc.tup.lciii.templateSpring.services.DummyService;
 import ar.edu.utn.frc.tup.lciii.templateSpring.services.EventoService;
 import ar.edu.utn.frc.tup.lciii.templateSpring.services.PartidoService;
-import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,27 +30,27 @@ public class EventoServiceImpl implements EventoService {
     private PartidoService partidoService;
 
     @Override
-    public PartidoModel crearAmarilla(Long idPartido, EventoDto eventoDto) {
+    public PartidoModel crearAmarilla(Long idPartido, EventoPostDto eventoDto) {
         return modificarPartido(idPartido, eventoDto, Evento.TARJETA_AMARILLA);
     }
 
     @Override
-    public PartidoModel crearRoja(Long idPartido, EventoDto eventoDto) {
+    public PartidoModel crearRoja(Long idPartido, EventoPostDto eventoDto) {
         return modificarPartido(idPartido, eventoDto, Evento.TARJETA_ROJA);
     }
 
     @Override
-    public PartidoModel crearGol(Long idPartido, EventoDto eventoDto) {
+    public PartidoModel crearGol(Long idPartido, EventoPostDto eventoDto) {
         return modificarPartido(idPartido, eventoDto, Evento.GOL);
     }
 
     @Override
-    public PartidoModel crearSale(Long idPartido, EventoDto eventoDto) {
+    public PartidoModel crearSale(Long idPartido, EventoPostDto eventoDto) {
         return modificarPartido(idPartido, eventoDto, Evento.SALE);
     }
 
     @Override
-    public PartidoModel crearEntra(Long idPartido, EventoDto eventoDto) {
+    public PartidoModel crearEntra(Long idPartido, EventoPostDto eventoDto) {
         return modificarPartido(idPartido, eventoDto, Evento.ENTRA);
     }
 
@@ -69,7 +63,7 @@ public class EventoServiceImpl implements EventoService {
         return listEventos;
     }
 
-    private PartidoModel modificarPartido(Long idPartido, EventoDto eventoDto, Evento eventoEnum) {
+    private PartidoModel modificarPartido(Long idPartido, EventoPostDto eventoDto, Evento eventoEnum) {
         EventoModel evento = new EventoModel();
         PartidoModel partido = partidoService.getPartido(idPartido);
         evento.setEvento(eventoEnum);
