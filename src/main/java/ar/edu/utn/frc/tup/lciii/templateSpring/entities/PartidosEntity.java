@@ -1,5 +1,6 @@
 package ar.edu.utn.frc.tup.lciii.templateSpring.entities;
 
+import ar.edu.utn.frc.tup.lciii.templateSpring.models.utils.Etapa;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,4 +24,6 @@ public class PartidosEntity {
     private Integer golesLocales;
     private Integer amonestados;
     private Integer extension;
+    @Enumerated(value = EnumType.STRING)
+    private Etapa etapa;
 }
