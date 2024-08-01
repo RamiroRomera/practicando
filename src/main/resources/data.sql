@@ -1,1 +1,20 @@
-SELECT 'Borrar el data.sql si no es necesario'
+INSERT INTO equipos (nombre) VALUES ('Argentina');
+INSERT INTO equipos (nombre) VALUES ('Brasil');
+INSERT INTO equipos (nombre) VALUES ('Francia');
+INSERT INTO equipos (nombre) VALUES ('Alemania');
+INSERT INTO equipos (nombre) VALUES ('España');
+INSERT INTO equipos (nombre) VALUES ('Italia');
+INSERT INTO equipos (nombre) VALUES ('Inglaterra');
+INSERT INTO equipos (nombre) VALUES ('Portugal');
+INSERT INTO equipos (nombre) VALUES ('Países Bajos');
+INSERT INTO equipos (nombre) VALUES ('Uruguay');
+INSERT INTO equipos (nombre) VALUES ('México');
+INSERT INTO equipos (nombre) VALUES ('Colombia');
+INSERT INTO equipos (nombre) VALUES ('Chile');
+INSERT INTO equipos (nombre) VALUES ('Bélgica');
+INSERT INTO equipos (nombre) VALUES ('Croacia');
+INSERT INTO equipos (nombre) VALUES ('Suecia');
+INSERT INTO equipos (nombre) VALUES ('Luxemburgo');
+INSERT INTO equipos (nombre) VALUES ('Polonia');
+INSERT INTO equipos (nombre) VALUES ('Senegal');
+INSERT INTO equipos (nombre) VALUES ('Nigeria');
