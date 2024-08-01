@@ -9,10 +9,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PartidosModel {
     private Long id;
+
     private EquiposModel equipoVisitante;
     private EquiposModel equipoLocal;
     private Integer golesVisitante;
     private Integer golesLocales;
     private Integer amonestados;
     private Integer extension;
+
 }

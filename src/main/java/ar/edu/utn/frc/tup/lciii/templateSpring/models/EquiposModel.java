@@ -9,5 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class EquiposModel {
     private Long id;
+
     private String nombre;
+
 }

@@ -9,9 +9,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class GruposModel {
     private Long id;
+
     private EquiposModel equipos1;
     private EquiposModel equipos2;
     private EquiposModel equipos3;
     private EquiposModel equipos4;
     private EquiposModel equipos5;
+
 }
