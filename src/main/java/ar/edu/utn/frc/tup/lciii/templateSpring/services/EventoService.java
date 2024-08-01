@@ -16,4 +16,7 @@ public interface EventoService {
     PartidoModel crearEntra(Long idPartido, EventoPostDto eventoDto);
 
     List<EventoModel> getEventosByPartido(PartidoModel partido);
+
+    void randomEventos(Long idPartido);
+
 }

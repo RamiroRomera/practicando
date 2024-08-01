@@ -18,4 +18,5 @@ public interface PartidoService {
 
     List<PartidoModel> getAllPartidoByGroup(GrupoModel grupo);
     PartidoModel crearPartido(EquipoModel equipoLocal, Integer llave, Etapa etapa);
+    List<PartidoModel> getPartidosByEtapa(Etapa etapa);
 }

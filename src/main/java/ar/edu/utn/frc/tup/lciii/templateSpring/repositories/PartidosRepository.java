@@ -13,4 +13,5 @@ import java.util.Optional;
 public interface PartidosRepository extends JpaRepository<PartidoEntity, Long> {
     List<PartidoEntity> findAllByEquipoLocal(EquipoEntity equipo);
     Optional<PartidoEntity> findByLlaveAndEtapa(Integer llave, Etapa etapa);
+    List<PartidoEntity> findAllByEtapa(Etapa etapa);
 }

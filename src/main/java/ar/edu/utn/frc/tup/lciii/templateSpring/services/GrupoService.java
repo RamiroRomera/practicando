@@ -13,5 +13,15 @@ public interface GrupoService {
 
     List<PartidoModel> crearPartidos();
 
-    Boolean cerrarGrupos();
+    List<PartidoModel> cerrarGrupos();
+    void randomGrupos();
+    GrupoModel getGrupoById(Long idGrupo);
+
+    List<PartidoModel> cerrarCuartos();
+
+    List<PartidoModel> cerrarSemis();
+
+    List<PartidoModel> cerrarTercerPuesto();
+
+    List<PartidoModel> cerrarFinal();
 }

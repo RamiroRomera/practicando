@@ -4,5 +4,6 @@ public enum Etapa {
     GRUPOS,
     CUARTOS,
     SEMI,
-    FINAL
+    FINAL,
+    TERCER_PUESTO
 }

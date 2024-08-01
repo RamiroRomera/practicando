@@ -1,6 +1,7 @@
 package ar.edu.utn.frc.tup.lciii.templateSpring.services.impl;
 
 
+import ar.edu.utn.frc.tup.lciii.templateSpring.dtos.eventos.EventoDto;
 import ar.edu.utn.frc.tup.lciii.templateSpring.dtos.eventos.EventoPostDto;
 import ar.edu.utn.frc.tup.lciii.templateSpring.entities.EventoEntity;
 import ar.edu.utn.frc.tup.lciii.templateSpring.entities.PartidoEntity;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class EventoServiceImpl implements EventoService {
@@ -84,5 +86,26 @@ public class EventoServiceImpl implements EventoService {
         evento.setPartido(partido);
         eventosRepository.save(modelMapper.map(evento, EventoEntity.class));
         return partidoService.actualizarPartido(partido);
+    }
+
+
+    @Override
+    public void randomEventos(Long idPartido) {
+        Random random = new Random();
+        EventoPostDto eventoDto = new EventoPostDto("Random", random.nextInt(45), "Random Randomireze", random.nextInt(2) != 0);
+        for (int i = 0; i < 20; i++) {
+            switch (random.nextInt(5)) {
+                case 0:
+                    this.crearAmarilla(idPartido, eventoDto);
+                case 1:
+                    this.crearRoja(idPartido, eventoDto);
+                case 2:
+                    this.crearGol(idPartido, eventoDto);
+                case 3:
+                    this.crearEntra(idPartido, eventoDto);
+                case 4:
+                    this.crearSale(idPartido, eventoDto);
+            }
+        }
     }
 }

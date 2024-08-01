@@ -119,14 +119,8 @@ public class PartidoServiceImpl implements PartidoService {
                 listPartidos4.add(modelMapper.map(partido, PartidoModel.class))
         );
 
-        List<PartidoModel> listPartidos5 = new ArrayList<>();
 
-        partidoRepository.findAllByEquipoLocal(modelMapper.map(grupo.getEquipos5(), EquipoEntity.class)).forEach(partido ->
-                listPartidos5.add(modelMapper.map(partido, PartidoModel.class))
-        );
-
-
-        return getUniquePartidos(listPartidos1, listPartidos2, listPartidos3, listPartidos4, listPartidos5);
+        return getUniquePartidos(listPartidos1, listPartidos2, listPartidos3, listPartidos4);
     }
 
     private List<PartidoModel> getUniquePartidos(List<PartidoModel>... lists) {
@@ -157,5 +151,14 @@ public class PartidoServiceImpl implements PartidoService {
             partido.setEquipoVisitante(equipo);
         }
         return this.actualizarPartido(partido);
+    }
+
+    @Override
+    public List<PartidoModel> getPartidosByEtapa(Etapa etapa) {
+        List<PartidoModel> listPartidos = new ArrayList<>();
+
+        partidoRepository.findAllByEtapa(etapa).forEach(partido -> listPartidos.add(modelMapper.map(partido, PartidoModel.class)));
+
+        return listPartidos;
     }
 }

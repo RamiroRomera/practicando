@@ -14,5 +14,4 @@ public class GrupoModel {
     private EquipoModel equipos2;
     private EquipoModel equipos3;
     private EquipoModel equipos4;
-    private EquipoModel equipos5;
 }
