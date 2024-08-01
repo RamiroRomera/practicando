@@ -26,4 +26,5 @@ public class PartidosEntity {
     private Integer extension;
     @Enumerated(value = EnumType.STRING)
     private Etapa etapa;
+    private Boolean terminado;
 }

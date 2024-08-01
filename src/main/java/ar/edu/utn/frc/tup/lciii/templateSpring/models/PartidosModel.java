@@ -17,4 +17,5 @@ public class PartidosModel {
     private Integer amonestados;
     private Integer extension;
     private Etapa etapa;
+    private Boolean terminado;
 }

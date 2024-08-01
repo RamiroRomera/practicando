@@ -15,6 +15,7 @@ public class GruposEntity {
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String nombre;
     @ManyToOne
     private EquiposEntity equipos1;
     @ManyToOne
