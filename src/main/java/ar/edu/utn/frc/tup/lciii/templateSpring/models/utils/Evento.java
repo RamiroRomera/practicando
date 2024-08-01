@@ -4,6 +4,6 @@ public enum Evento {
     TARJETA_ROJA,
     TARJETA_AMARILLA,
     GOL,
-    EXTENSION,
-    CAMBIO
+    SALE,
+    ENTRA
 }

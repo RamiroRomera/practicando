@@ -11,19 +11,18 @@ import lombok.Setter;
 @Data
 @Setter
 @NoArgsConstructor
-public class PartidosEntity {
+public class PartidoEntity {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    private EquiposEntity equipoVisitante;
+    private EquipoEntity equipoVisitante;
     @ManyToOne
-    private EquiposEntity equipoLocal;
+    private EquipoEntity equipoLocal;
     private Integer golesVisitante;
     private Integer golesLocales;
     private Integer amonestados;
-    private Integer extension;
     @Enumerated(value = EnumType.STRING)
     private Etapa etapa;
     private Boolean terminado;

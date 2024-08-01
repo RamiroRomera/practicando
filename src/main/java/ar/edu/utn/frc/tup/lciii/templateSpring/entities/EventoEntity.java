@@ -11,7 +11,7 @@ import lombok.Setter;
 @Data
 @Setter
 @NoArgsConstructor
-public class EventosEntity {
+public class EventoEntity {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,5 +22,5 @@ public class EventosEntity {
     private Integer minuto;
     private String jugador;
     @ManyToOne
-    private PartidosEntity partido;
+    private PartidoEntity partido;
 }

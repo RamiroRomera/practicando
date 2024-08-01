@@ -1,10 +1,9 @@
 package ar.edu.utn.frc.tup.lciii.templateSpring.repositories;
 
-import ar.edu.utn.frc.tup.lciii.templateSpring.entities.DummyEntity;
-import ar.edu.utn.frc.tup.lciii.templateSpring.entities.EventosEntity;
+import ar.edu.utn.frc.tup.lciii.templateSpring.entities.EventoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EventosRepository extends JpaRepository<EventosEntity, Long> {
+public interface EventosRepository extends JpaRepository<EventoEntity, Long> {
 }

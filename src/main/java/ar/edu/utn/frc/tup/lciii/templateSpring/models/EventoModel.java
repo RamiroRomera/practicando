@@ -8,10 +8,11 @@ import lombok.Setter;
 @Data
 @Setter
 @NoArgsConstructor
-public class EventosModel {
+public class EventoModel {
     private Long id;
     private Evento evento;
     private String etapa;
     private Integer minuto;
     private String jugador;
+    private PartidoModel partido;
 }

@@ -8,14 +8,13 @@ import lombok.Setter;
 @Data
 @Setter
 @NoArgsConstructor
-public class PartidosModel {
+public class PartidoModel {
     private Long id;
-    private EquiposModel equipoVisitante;
-    private EquiposModel equipoLocal;
+    private EquipoModel equipoVisitante;
+    private EquipoModel equipoLocal;
     private Integer golesVisitante;
     private Integer golesLocales;
     private Integer amonestados;
-    private Integer extension;
     private Etapa etapa;
     private Boolean terminado;
 }

@@ -7,12 +7,8 @@ import lombok.Setter;
 @Data
 @Setter
 @NoArgsConstructor
-public class GruposModel {
+public class EquipoModel {
     private Long id;
     private String nombre;
-    private EquiposModel equipos1;
-    private EquiposModel equipos2;
-    private EquiposModel equipos3;
-    private EquiposModel equipos4;
-    private EquiposModel equipos5;
+    private Boolean participando;
 }

@@ -10,10 +10,11 @@ import lombok.Setter;
 @Data
 @Setter
 @NoArgsConstructor
-public class EquiposEntity {
+public class EquipoEntity {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
+    private Boolean participando;
 }

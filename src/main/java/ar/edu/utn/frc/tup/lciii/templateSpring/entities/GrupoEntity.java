@@ -10,20 +10,20 @@ import lombok.Setter;
 @Data
 @Setter
 @NoArgsConstructor
-public class GruposEntity {
+public class GrupoEntity {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     @ManyToOne
-    private EquiposEntity equipos1;
+    private EquipoEntity equipos1;
     @ManyToOne
-    private EquiposEntity equipos2;
+    private EquipoEntity equipos2;
     @ManyToOne
-    private EquiposEntity equipos3;
+    private EquipoEntity equipos3;
     @ManyToOne
-    private EquiposEntity equipos4;
+    private EquipoEntity equipos4;
     @ManyToOne
-    private EquiposEntity equipos5;
+    private EquipoEntity equipos5;
 }
